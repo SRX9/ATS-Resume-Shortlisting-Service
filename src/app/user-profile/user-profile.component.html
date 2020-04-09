@@ -1,0 +1,93 @@
+<div class="container">
+  <h1 class="m-3 p-3 w-25 shadow mb-4 text-center" style="border-radius: 25px;">Resin Inc.</h1>
+  <header class="shadow-lg m-3 pl-5 pr-5 p-3" style="border-radius: 25px;">
+    <h3 class="pt-4 pb-3">User Profile</h3>
+    <div class="d-inline-block">
+      <h1 style="font-weight: 500;" class="display-2">{{userDetails.firstName}} {{userDetails.lastName}}</h1>
+    </div>
+    <div class="d-inline-block float-right">
+      <input type="button" (click)="onLogout()" value="Logout" />
+    </div>
+
+    <hr class="mt-4 mr-5">
+<table *ngIf="userDetails" class="table-fill mb-3">
+  <tbody style="font-size: 2.5rem;">
+    <tr>
+      <td class="font-weight-bold text-black-50"> DOB</td>
+      <td class="pl-5  ">{{userDetails.DOB}}</td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold text-black-50"> Contact </td>
+      <td class="pl-5  ">{{userDetails.contact}}</td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold text-black-50"> Education </td>
+      <td class="pl-5  ">{{userDetails.degree}}</td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold text-black-50"> College </td>
+      <td class="pl-5  ">{{userDetails.institute}}</td>
+    </tr>
+    <tr>
+      <td class="font-weight-bold text-black-50">Email </td>
+      <td class="pl-5  ">{{userDetails.email}}</td>
+    </tr>
+
+    <tr>
+      <td colspan="2" class="text-center">
+      </td>
+    </tr>
+  </tbody>
+</table>
+  </header>
+
+  <div class="shadow-lg m-3 mt-5 pl-5 pr-5 p-3" style="border-radius: 25px;">
+    <h1>Available Jobs</h1>
+    <hr>
+    <div *ngIf='alljobs; else elseBlock'>
+      <li *ngFor="let job of jobDetails;index as i">
+        <mat-card>
+          <mat-card-header>
+
+            <mat-card-title> {{job.Title}} {{job.jobType}}</mat-card-title>
+            <mat-card-subtitle>{{job.description}} {{job.experience}}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content class="pl-4">
+            At {{job.location}}
+          </mat-card-content>
+          <mat-card-actions class="pb-5 pr-3">
+            <button (click)='setJob(i)' class="bg-info text-white float-right" mat-button>Apply</button><br>
+          </mat-card-actions>
+        </mat-card>
+      </li>
+    </div>
+  </div>
+
+
+  <ng-template #elseBlock>
+    <mat-card>
+      <mat-card-header>
+
+        <mat-card-title> {{job.Title}} {{job.jobType}}</mat-card-title>
+        <mat-card-subtitle>{{job.description}} {{job.experience}}</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        Upoad your Resume For the jobs.
+        <input type="file" class="p-3 bg-info text-white mt-2" style="cursor: pointer;;" name="resume" accept=".pdf" placeholder="File"
+            (change)='handleFile($event.target.files)'>
+      </mat-card-content>
+      <mat-card-actions >
+        <div *ngIf='applyButton; else exe' class="ml-3">
+          <button (click)='applyJob()' style="cursor: pointer;" mat-button>Apply</button><br>
+        </div>
+        <ng-template #exe>
+          <button mat-button class="text-right bg-success text-white" style="cursor: pointer;" disabled>Apply</button><br>
+        </ng-template>
+        <!-- Put Your resume here..<input type="file" name="resume"> -->
+      </mat-card-actions>
+    </mat-card>
+
+  </ng-template>
+</div>
+
+

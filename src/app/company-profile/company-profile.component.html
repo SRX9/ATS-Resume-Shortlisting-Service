@@ -1,0 +1,101 @@
+<router-outlet></router-outlet>
+<style>
+.center-cropped {
+  width: 150px;
+  height: 150px;
+  overflow:hidden;
+}
+.image{
+  height: 100%;
+  min-width: 100%;
+  border-radius: 50%;
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+}
+</style>
+<div *ngIf='visibleAll; else elseBlock' class="container">
+      <h1 class="m-3 p-3 w-25 shadow mb-4 text-center" style="border-radius: 25px;">Resin Inc.</h1>
+      <header class="shadow-lg m-3 pl-5 pr-5 p-3" style="border-radius: 25px;">
+        <h3 class="pt-4 pb-3">Company Profile</h3>
+        <div class="mt-4 d-inline-block">
+        <div class="d-inline-block center-cropped">
+          <img src="http://localhost:4000{{companyDetails.logo}}" class="image" />
+        </div>
+        <div class="d-inline-block pl-4">
+          <h1 style="font-weight: 500;" class="display-2">{{companyDetails.name}}</h1>
+        </div>
+        </div>
+
+        <div class="d-inline-block float-right">
+          <input type="button" (click)="onLogout()" value="Logout" />
+        </div>
+
+        <hr class="mt-4 mr-5">
+        <table  class="table-fill mb-3">
+          <tbody style="font-size: 2.5rem;">
+            <tr>
+              <td class="font-weight-bold text-black-50"> Descritpion</td>
+              <td class="pl-5  ">{{companyDetails.description}}</td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold text-black-50"> Industry </td>
+              <td class="pl-5  ">{{companyDetails.type}}</td>
+            </tr>
+            <tr>
+              <td class="font-weight-bold text-black-50"> Email </td>
+              <td class="pl-5  ">{{companyDetails.email}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pb-3 pt-4 " >
+          <button mat-raised-button [routerLink]="['/jobPost']"
+          color="primary" style="font-size: 1.8rem;">Post a Job</button>
+        </div>
+      </header>
+      <section style="border-radius: 25px;" class="shadow-lg m-3 pl-5 pr-5 p-3">
+        <h1 class="pt-4">Posted Jobs</h1>
+        <hr>
+        <div *ngFor="let item of postedJobs;index as i" class="p-3 pb-5 ">
+          <div>
+            <h1 class="d-inline-block pr-2">{{item.Title}}</h1>
+            <h1 class="d-inline-block pr-2" *ngFor="let type of item.jobType">
+              {{type}}
+            </h1>
+          </div>
+
+          <h3><span class="text-black-50">Description</span></h3>
+          <h4>
+            {{item.description}}
+          </h4>
+          <button class="btn btn-primary" (click)='setJob(i)'>See Applications</button>
+          <hr>
+        </div>
+      </section>
+</div>
+
+<ng-template #elseBlock>
+  <h1 >{{ job.title }}</h1>
+
+  <!-- <section style="border-radius: 25px;" class="shadow-lg m-3 pl-5 pr-5 p-3"> -->
+    <table class="table container  table-hover table-info table-bordered"  border="2">
+    <h1 class="display-4 font-weight-bold p-3">Short Listed Resumes</h1>
+
+
+    <tr>
+
+      <td><h1>Candidate</h1></td>
+      <td><h1>Score</h1></td>
+
+    </tr>
+
+    <tr *ngFor="let item of userResumes;index as i" >
+        <td><h1>{{item.username}} </h1></td>
+        <td><h1>{{item.score}} </h1></td>
+        <td><button (click)="gotoresume(item.resume)"><h1>See Resume</h1></button></td>
+
+    </tr>
+    </table>
+  <!-- </section> -->
+
+</ng-template>

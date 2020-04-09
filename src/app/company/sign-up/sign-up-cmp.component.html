@@ -1,0 +1,65 @@
+<div>
+  <h1 class="display-4 font-weight-bolder p-3 pt-4 pb-4">Resin <span class="text-black-50">Companies</span> </h1>
+</div>
+<form #signUpForm="ngForm" (ngSubmit)="signUpForm.valid && onSubmit(signUpForm)">
+
+  <input type="text" #name="ngModel"
+  [(ngModel)]="companyService.selectedCompany.name"
+  name="name" placeholder="Company Name"
+  required>
+
+
+  <textarea rows="5" type="text" style="resize: none; background-color: rgb(246, 246, 246); width: 85%;font-size: 1.5rem;"
+  class="p-2 text-center border-0 pl-3 pr-3 mt-2" #description="ngModel"
+  [(ngModel)]="companyService.selectedCompany.description"
+  name="description" placeholder="Description"
+  required
+  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !description.valid }"></textarea>
+  <div *ngIf="signUpForm.submitted && !description.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+
+  <input type="text" #type="ngModel"
+  [(ngModel)]="companyService.selectedCompany.type" name="type"
+  placeholder="Industry Type"
+  required  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !type.valid }">
+  <div *ngIf="signUpForm.submitted && !type.valid">
+    <label class="validation-message">This field is required.</label>
+  </div>
+
+  <input type="text" #email="ngModel"
+  [(ngModel)]="companyService.selectedCompany.email" name="email"
+  placeholder="Email"
+  required [pattern]="emailRegex"  [ngClass]="{'invalid-textbox' :signUpForm.submitted && !email.valid }">
+  <div *ngIf="signUpForm.submitted && email.errors">
+    <label *ngIf="email.errors.required" class="validation-message">This field is required.</label>
+    <label *ngIf="email.errors.pattern" class="validation-message">Invalid email address.</label>
+  </div>
+  <input style="background-color: rgb(164, 229, 255);
+        margin-left: 33px;width: 84.5%;font-size: 1.5rem;"
+      class="p-4 mb-2  border-0 pl-3 pr-3 mt-2" type="file"
+      name="img" placeholder="Choose Company Logo" accept="image/*"
+        (change)='handleFile($event.target.files)'>
+
+ <!-- <app-material-file-upload (complete)="onFileComplete($event)"></app-material-file-upload> -->
+  <input type="password" #password="ngModel" [(ngModel)]="companyService.selectedCompany.password" name="password" placeholder="Password"
+  minlength="4" required [ngClass]="{'invalid-textbox' :signUpForm.submitted && !password.valid }">
+  <div *ngIf="signUpForm.submitted && password.errors">
+    <label *ngIf="password.errors.required" class="validation-message">This field is required.</label>
+    <label *ngIf="password.errors.minlength" class="validation-message">Enter atleast 4 characters.</label>
+  </div>
+
+
+
+  <input type="submit" value="Sign Up">
+</form>
+
+<!-- Success message -->
+<div class="success" *ngIf="showSucessMessage">
+  Saved successfully
+</div>
+
+<!-- Error message -->
+<div class="alert" *ngIf="serverErrorMessages">
+  {{serverErrorMessages}}
+</div>

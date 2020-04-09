@@ -1,0 +1,158 @@
+
+<div class="container p-4 border-0 mt-5 shadow-lg " style="border-radius: 25px; text-align:center">
+  <h1 class="display-2 font-weight-normal">Resin</h1>
+  <div class="row" style="padding: 15px;"><div class="col-sm-2"></div>
+  <div class="col-sm-8"><h1>Job Post Form</h1></div>
+  <div class="col-sm-2"></div></div>
+  <div class="row">
+    <div class="col-1"></div>
+      <div class="col-5">
+  <div class="row" style="padding: 15px;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <mat-form-field appearance="outline" style="width: 100%;">
+
+        <mat-label>Title</mat-label>
+        <input matInput #title [(ngModel)]='Title' maxlength="256" style="width: 120%;" required>
+        <mat-hint align="end">{{Title.length || 0}}/256 </mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+
+  <div class="row" style="padding: 15px;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <mat-form-field style="width: 100%;" appearance="outline" placeholder="Title">
+        <mat-label>Degree</mat-label>
+        <mat-select [formControl]="degrees" multiple>
+          <mat-option *ngFor="let degree of degreeList" [value]="degree">{{degree}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      {{degrees.value}}
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  <div class="row" style="padding: 15px;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Skills</mat-label>
+        <mat-select [formControl]="skills" multiple>
+          <mat-option *ngFor="let skill of skillList" [value]="skill">{{skill}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      {{skills.value}}
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+  <div class="row" style="padding: 15px;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <mat-form-field style="width: 100%;" appearance="outline">
+        <mat-label>Employeement type</mat-label>
+        <mat-select [formControl]="employeement_types" multiple>
+          <mat-option *ngFor="let employeement_type of employeement_typeList" [value]="employeement_type">
+            {{employeement_type}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      {{employeement_types.value}}
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+
+  <div class="row" style="padding: 15px;">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+      <mat-form-field appearance="outline" style="width: 100%;">
+        <mat-label>Location </mat-label>
+        <input matInput placeholder="e.g Ahmedabad" [(ngModel)]='Location' maxlength="30" style="width: 100%;" required>
+
+        <mat-hint align="end">{{Location.length || 0}}/30 </mat-hint>
+      </mat-form-field>
+    </div>
+    <div class="col-sm-2"></div>
+  </div>
+      </div>
+      <div class="col-5">
+      <div class="row" style="padding: 15px;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Salary Per Month.</mat-label>
+            <input matInput type="number" placeholder="e.g 5000" [(ngModel)]='salary' max=2000000 style="width: 100%;"
+              required>
+
+
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+
+      <div class="row" style="padding: 15px;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Expected Experiance In Year</mat-label>
+            <input matInput type="number" placeholder="e.g 05" [(ngModel)]='Experiance' max=20 style="width: 100%;" required>
+
+
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      <div class="row" style="padding: 15px;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Due Date To Applay</mat-label>
+            <input matInput type="date" placeholder="e.g 50000" [(ngModel)]='Start_Date' style="width: 100%;" required>
+
+
+          </mat-form-field>
+          {{Start_Date}}
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      <div class="row" style="padding: 15px;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Last Day To Applay</mat-label>
+            <input matInput type="date" placeholder="e.g 50000" [(ngModel)]='End_date' style="width: 100%;" required>
+
+
+          </mat-form-field>
+          {{End_date}}
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+
+      <div class="row" style="padding: 15px;">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-8">
+          <mat-form-field appearance="outline" style="width: 100%;">
+            <mat-label>Description </mat-label>
+            <input matInput placeholder="e.g Ahmedabad" [(ngModel)]='Description' maxlength="5000" style="width: 100%;"
+              required>
+
+            <mat-hint align="end">{{Description.length || 0}}/5000 </mat-hint>
+          </mat-form-field>
+        </div>
+        <div class="col-sm-2"></div>
+      </div>
+      </div>
+    <div class="col-1"></div>
+
+  </div>
+  <div class="row" style="padding: 15px;">
+      <div class="col-sm-2"></div>
+      <div class="col-sm-8">
+          <button mat-raised-button (click)='jobPost()' color="primary" >Post Job</button>
+      </div>
+      <div class="col-sm-2"></div>
+  </div>
+</div>
+
+
+
