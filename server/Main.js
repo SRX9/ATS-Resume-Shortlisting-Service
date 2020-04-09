@@ -13,9 +13,9 @@ app.use(cors());
 
 
 app.get('/getit',(req,res)=>{
-    
-    //Job applicant 
-    let username ="Huzaifa Mankda";
+
+    //Job applicant
+    let username ="aaa";
 
     //Job Information
     let jobinfo={
@@ -25,43 +25,35 @@ app.get('/getit',(req,res)=>{
         descritpion : "we need Problem solver, enthusiastic and fast learners for our software development team.",
         degree: "Bachelors of technology in Computer Engineering or related work fields.",
     }
-    
-    /*let jobinfo={
-        skills: ["Speaking","Communication","finanace","organizing skill","non-technical","Management","Negotiation"],
-        title: "Management and Financing",
-        experience: "Experience in Management and Financing and Recruitment",
-        descritpion : "Fully Convincing and having good communication skills.",
-        degree: "BBA, MBA and Human Resource",
-    }*/
 
 
 
-    let Resumes=[   
-                    {  
+    let Resumes=[
+                    {
                         candidate:"Soham",
                         reusme:'./Resumes/rohan.pdf'
                     },
-                    {  
+                    {
                         candidate:"Rohan Patel",
                         reusme:'./Resumes/sohan.pdf'
                     },
-                    {  
+                    {
                         candidate:"Raj Patel",
                         reusme:'./Resumes/a.pdf'
                     },
-                    {  
+                    {
                         candidate:"AL Gorithm",
                         reusme:'./Resumes/Al Gorithm.pdf'
                     },
-                    {  
+                    {
                         candidate:"Savaliya Raj",
                         reusme:'./Resumes/b.pdf'
                     },
-                    {  
+                    {
                         candidate:"SWATI BARARIA",
                         reusme:'./Resumes/c.pdf'
                     },
-                    {  
+                    {
                         candidate:"Cocoa Touch",
                         reusme:'./Resumes/Cocoa Touch.pdf'
                     },
@@ -570,7 +562,7 @@ app.get('/getit',(req,res)=>{
                 points:Score[0]
             })
         });
-    }            
+    }
     setTimeout(()=>{
         function compare(a, b) {
             if (a.points > b.points) {
@@ -584,7 +576,7 @@ app.get('/getit',(req,res)=>{
         Results.sort(compare);
         let t=Results[0].points+25;
         for(let i=0;i<Results.length;i++)
-        {   
+        {
             let percent = Number.parseFloat(Results[i].points * (100 / t)).toPrecision(4);
             Results[i].Percent_Matched=percent+"%";
         }

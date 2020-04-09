@@ -49,8 +49,7 @@ function GenerateScore(section, jobinfo) {
     let finalMatchedSkills = skillsMatched.filter(function (elem, pos) {
         return skillsMatched.indexOf(elem) == pos;
     })
-    scoreObtained+=(finalMatchedSkills.length*20);
-
+    scoreObtained+=finalMatchedSkills.length*20;
 
 
     //***2*** Experience Score Calculating = Candidate's experience matching wiht req experience
@@ -114,9 +113,6 @@ function GenerateScore(section, jobinfo) {
             reqSkillsInExperience++;
         }
     });
-  console.log(scoreObtained);
-
-
     let foundSkillInExperience=0;
     finalMatchedExperieced.map(skill => {
         let temp = stringSimilarity.findBestMatch(skill.toLowerCase(), reqSkills);
@@ -125,10 +121,7 @@ function GenerateScore(section, jobinfo) {
             foundSkillInExperience++;
         }
     });
-    if(reqSkillsInExperience!=0)
-    {
-      scoreObtained += ((foundSkillInExperience/reqSkillsInExperience) * 50)
-    }
+    scoreObtained+=((foundSkillInExperience/reqSkillsInExperience)*50)
 
     //***3*** Calculating Job Title Score
     let candexp = CandidateExpirenceToken;
@@ -172,6 +165,7 @@ function GenerateScore(section, jobinfo) {
     EducationToken.map(token => {
         let temp = stringSimilarity.findBestMatch(token.toLowerCase(),reqEducationToken);
         if (temp.bestMatch.rating > 0.75) {
+            console.log(temp.bestMatch.target)
             scoreObtained += 2;
         }
     })
@@ -184,11 +178,12 @@ function GenerateScore(section, jobinfo) {
     Softskills.map(token => {
         let temp = stringSimilarity.findBestMatch(token.toLowerCase(), reqSoft);
         if (temp.bestMatch.rating > 0.75) {
+            console.log(temp.bestMatch.target)
             scoreObtained += 1;
         }
     });
 
-    return [section];
+    return [scoreObtained];
 }
 
 

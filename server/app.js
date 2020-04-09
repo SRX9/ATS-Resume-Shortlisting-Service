@@ -124,15 +124,10 @@ app.get('/getCandidates', (req, res) => {
       res.send(false);
     }
     else {
-      for(var i=0;i<docs.length;i++){
-        docs[i].score = parseInt( docs[i].score);
-      }
-      docs.sort((a, b) => (a.score < b.score) ? 1 : -1)
       res.send(docs);
     }
   })
 });
-
 
 app.put('/applyJob',resumeStore.single('resume'),(req,res)=>{
   console.log(resumeLink);
@@ -612,7 +607,7 @@ app.put('/applyJob',resumeStore.single('resume'),(req,res)=>{
           jobId: jid,
           resume: resumeLink,
           username: username,
-          score: Score[0].toString()
+          score: Score[0] ||0
         });
         user.save().then((doc) => {
           res.send(doc);
